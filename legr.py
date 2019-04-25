@@ -152,12 +152,15 @@ class LeGR:
 
         total_t = time.time() - start_t
         print('Finished. Use {:.2f} hours. Minimum Loss: {:.3f}'.format(float(total_t) / 3600, minimum_loss))
+        if not os.path.exists('./log'):
+            os.makedirs('./log')
         np.savetxt(os.path.join('./log', '{}_ea_loss.txt'.format(name)), np.array(mean_loss))
         np.savetxt(os.path.join('./log', '{}_ea_min.data'.format(name)), best_perturbation)
 
         # Use the best affine transformation to obtain the resulting model
         self.pruner.pruning_with_transformations(original_dist, best_perturbation, target)
-
+        if not os.path.exists('./ckpt'):
+            os.makedirs('./ckpt')
         torch.save(self.pruner.model, os.path.join('ckpt', '{}_bestarch_init.pt'.format(name)))
 
     def prune(self, name, model_name, long_ft, target=-1):
@@ -203,8 +206,6 @@ class LeGR:
         print('Fine tuning to recover from pruning iteration.')
         if not os.path.exists('./ckpt'):
             os.makedirs('./ckpt')
-
-
         print('Saving untrained pruned model...')
         torch.save(self.pruner.model, os.path.join('ckpt', '{}_init.t7'.format(name)))
         acc = test(self.model, self.test_loader, device=self.device)
