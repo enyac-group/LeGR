@@ -4,6 +4,7 @@ import torch.nn as nn
 
 from random import shuffle
 from model.MobileNetV2 import MobileNetV2_CIFAR10
+from model.resnet_cifar10 import DownsampleA
 
 class FilterPruner(object):
     def __init__(self, model, rank_type='l2_weight', num_cls=100, safeguard=0, random=False, device='cuda', resource='FLOPs'):
@@ -670,8 +671,8 @@ class FilterPruner(object):
                                     groups = int(np.round(conv.out_channels*growth_rate)),
                                     bias = conv.bias)
                     conv.in_channels = int(np.round(conv.out_channels*growth_rate))
-                    conv.out_channels = int(np.round(conv.out_channels*growth_rate))
                     conv.groups = int(np.round(conv.out_channels*growth_rate))
+                    conv.out_channels = int(np.round(conv.out_channels*growth_rate))
                 else:
                     in_grown = int(np.round(conv.in_channels*growth_rate)) if conv != first else 3
                     new_conv = torch.nn.Conv2d(in_channels = in_grown, \
