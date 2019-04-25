@@ -693,14 +693,14 @@ class FilterPruner(object):
                 new_in_channels = new_weights.shape[1]
                 old_out_channels = old_weights.shape[0]
                 old_in_channels = old_weights.shape[1]
-                
+
                 if old_out_channels < new_out_channels and old_in_channels < new_in_channels:
                     new_weights[:old_out_channels, :old_in_channels, :, :] = old_weights
+                    new_weights[:, old_in_channels:, :, :] = 0
+                    new_weights[old_out_channels:, :, :, :] = 0
                 elif old_out_channels < new_out_channels:
                     new_weights[:old_out_channels, :, :, :] = old_weights
                     new_weights[old_out_channels:, :, :, :] = 0
-                else:
-                    new_weights[old_out_channels:, old_in_channels:, :, :] = 0
 
                 conv.weight.data = torch.from_numpy(new_weights).to(self.device)
                 conv.weight.grad = None
@@ -726,20 +726,22 @@ class FilterPruner(object):
                 new_running_var = next_new_bn.running_var.data.cpu().numpy()
 
                 new_weights[: old_weights.shape[0]] = old_weights
+                new_weights[old_weights.shape[0]:] = 1
                 next_bn.weight.data = torch.from_numpy(new_weights).to(self.device)
                 next_bn.weight.grad = None
 
                 new_bias[: old_bias.shape[0]] = old_bias
+                new_bias[old_bias.shape[0]:] = 0
                 next_bn.bias.data = torch.from_numpy(new_bias).to(self.device)
                 next_bn.bias.grad = None
 
                 new_running_mean[: old_running_mean.shape[0]] = old_running_mean
+                new_running_mean[old_running_mean.shape[0]:] = 0
                 next_bn.running_mean.data = torch.from_numpy(new_running_mean).to(self.device)
-                next_bn.running_mean.grad = None
 
                 new_running_var[: old_running_var.shape[0]] = old_running_var
+                new_running_var[old_running_var.shape[0]:] = 1
                 next_bn.running_var.data = torch.from_numpy(new_running_var).to(self.device)
-                next_bn.running_var.grad = None
 
             elif isinstance(m, nn.Linear):
                 new_linear_layer = torch.nn.Linear(int(np.round(m.in_features*growth_rate)), m.out_features)
@@ -749,6 +751,7 @@ class FilterPruner(object):
                 new_weights = new_linear_layer.weight.data.cpu().numpy()	 	
 
                 new_weights[:, : old_weights.shape[1]] = old_weights
+                new_weights[:, old_weights.shape[1]:] = 0
                 
                 m.weight.data = torch.from_numpy(new_weights).to(self.device)
                 m.weight.grad = None
