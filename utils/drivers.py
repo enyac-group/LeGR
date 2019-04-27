@@ -47,7 +47,7 @@ def get_dataloader(img_size, dataset, datapath, batch_size, no_val):
                 num_workers=0, pin_memory=True
             )
             val_loader = torch.utils.data.DataLoader(
-                val_set, batch_size=batch_size, shuffle=valid_sampler,
+                val_set, batch_size=batch_size, sampler=valid_sampler,
                 num_workers=0, pin_memory=True
             )
         else:
