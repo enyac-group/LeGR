@@ -16,7 +16,9 @@ Within each script, there are several commands that run the experiments
 P.S. For MorphNet, we search for the trade-off lambda instead of use a large lambda and grow because we find that the growing phase leads to worse results, which is also observed by Wang et al. in their CVPR work [Growing a brain: Fine-tuning by increasing model capacity](https://www.ri.cmu.edu/wp-content/uploads/2017/06/yuxiongw_cvpr17_growingcnn.pdf)
 
 
-## Visualizing the search progress
+## Visualizing the search progress of affine transformations
+
+![Visualizing the search progress](./legr_mbnetv2_cifar100_flops0.13.gif)
 
 We provide a script to extract the progress (in architectures explored) when learning the affine transformation. For any LeGR script you run, pass the generated output for searching the affine transformation to the following script will generate a visualization of the search progress
 
