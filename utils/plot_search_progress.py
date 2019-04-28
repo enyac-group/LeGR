@@ -26,12 +26,14 @@ barcollection = plt.bar(x, barlist(0))
 plt.xlabel('Layer index')
 plt.ylabel('#Filters')
 ylim = plt.gca().get_ylim()
-loss_text = plt.text(0, int(ylim[1]*0.9), 'Minimum loss so far: {:.3f}'.format(losses[0]))
+loss_text = plt.text(0, int(ylim[1]*0.8), 'Minimum loss in Pool: {:.3f}'.format(losses[0]))
+iteration = plt.text(0, int(ylim[1]*0.9), 'Architectures searched: {}'.format(1))
 
 # animation function.  This is called sequentially
 def animate(i):
     y = barlist(i)
     loss_text.set_text('Minimum loss so far: {:.3f}'.format(losses[i]))
+    iteration.set_text('Architectures searched: {}'.format(i+1))
     for i, b in enumerate(barcollection):
         b.set_height(y[i])
 
@@ -44,4 +46,4 @@ anim = animation.FuncAnimation(fig, animate, repeat=False, blit=False,
 # the video can be embedded in html5.  You may need to adjust this for
 # your system: for more information, see
 # http://matplotlib.sourceforge.net/api/animation_api.html
-anim.save(sys.argv[2], fps=2, extra_args=['-vcodec', 'libx264'])
+anim.save(sys.argv[2], fps=10, extra_args=['-vcodec', 'libx264'])
