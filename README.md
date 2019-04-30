@@ -33,6 +33,13 @@ The video will be generated at `./resnet56_cifar10_flops0.47_transformations_1.m
 
 If you find this repository helpful, please consider citing our work
 
+    @article{chin2018legr,
+    title={LeGR: Filter Pruning via Learned Global Ranking},
+    author={Chin, Ting-Wu and Ding, Ruizhou and Zhang, Cha and Marculescu, Diana},
+    journal={arXiv preprint arXiv:1904.12368},
+    year={2019}
+    }
+
     @article{chin2018layer,
     title={Layer-compensated pruning for resource-constrained convolutional neural networks},
     author={Chin, Ting-Wu and Zhang, Cha and Marculescu, Diana},
@@ -40,3 +47,5 @@ If you find this repository helpful, please consider citing our work
     year={2018}
     }
 
+
+    
