@@ -7,6 +7,12 @@ This is a work that improves our previous NeurIPS workshop paper [Layer-compensa
 - PyTorch 1.0.1
 - Python 3.5+
 
+## Checkpoints for pre-trained models
+
+- [ResNet56 for CIFAR10](https://cmu.box.com/s/ngev32b97gv7vf4fpb73lxqlfzj643ib)
+- [ResNet56 for CIFAR100](https://cmu.box.com/s/5gqfq4yhstzl2ygmpihujknsfbm19fj2)
+- [MobileNetV2 for CIFAR100](https://cmu.box.com/s/8d9gsuo2il2wxvfg4z9spxje774izj1g)
+
 ## Running LeGR / MorphNet / AMC
 
 The scripts for reproducing the results in Table 1 and Figure 2 are under scripts/
