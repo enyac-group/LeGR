@@ -1,4 +1,4 @@
-# LeGR: Filter Pruning via Learned Global Ranking
+# [LeGR: Filter Pruning via Learned Global Ranking](https://arxiv.org/abs/1904.12368)
 
 This is a work that improves our previous NeurIPS workshop paper [Layer-compensated Pruning for Resource-constrained Convolutional Neural Networks](https://arxiv.org/abs/1810.00518), in both further understanding and empirical results.
 
