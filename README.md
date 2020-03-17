@@ -1,6 +1,7 @@
-# [LeGR: Filter Pruning via Learned Global Ranking](https://arxiv.org/abs/1904.12368)
+# [Towards Efficient Model Compression via Learned Global Ranking](https://arxiv.org/abs/1904.12368)
 
-This is a work that improves our previous NeurIPS workshop paper [Layer-compensated Pruning for Resource-constrained Convolutional Neural Networks](https://arxiv.org/abs/1810.00518), in both further understanding and empirical results.
+This is the code for our CVPR 2020 Oral paper [Towards Efficient Model Compression via Learned Global Ranking](https://arxiv.org/abs/1904.12368).
+This work improves upon our pre-print [Layer-compensated Pruning for Resource-constrained Convolutional Neural Networks](https://arxiv.org/abs/1810.00518), in both further understanding and empirical results. A 4-page abridged version of the pre-print was accepeted as contributed talk at [NeurIPS'18 MLPCD2 Workshop](https://sites.google.com/view/nips-2018-on-device-ml/schedule?authuser=0).
 
 ## Requirements
 
@@ -39,14 +40,14 @@ The video will be generated at `./resnet56_cifar10_flops0.47_transformations_1.m
 
 If you find this repository helpful, please consider citing our work
 
-    @article{chin2018legr,
-    title={LeGR: Filter Pruning via Learned Global Ranking},
+    @inproceedings{chin2020legr,
+    title={Towards Efficient Model Compression via Learned Global Ranking},
     author={Chin, Ting-Wu and Ding, Ruizhou and Zhang, Cha and Marculescu, Diana},
-    journal={arXiv preprint arXiv:1904.12368},
-    year={2019}
+    booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+    year={2020}
     }
 
-    @article{chin2018layer,
+    @article{chin2018lcp,
     title={Layer-compensated pruning for resource-constrained convolutional neural networks},
     author={Chin, Ting-Wu and Zhang, Cha and Marculescu, Diana},
     journal={arXiv preprint arXiv:1810.00518},
